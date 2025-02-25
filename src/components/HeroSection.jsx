@@ -39,7 +39,7 @@ export default function HeroSection() {
         position: "relative",
         width: "100%",
         height: "80vh",
-        backgroundImage: `url('/images/truck-hero.jpg')`,
+        backgroundImage: `url('/images/truck-hero.jpg')`, // Your background image
         backgroundPosition: "center",
         backgroundSize: "cover",
         display: "flex",
@@ -55,7 +55,7 @@ export default function HeroSection() {
         sx={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(135deg, #FFB800, #FFD700, #FF6A00, #1E2B44)", // Added an extra color for boldness
+          background: "linear-gradient(135deg, rgba(10, 28, 44, 0.8), rgba(10, 28, 44, 0.8))", // Gradient overlay
           zIndex: 1,
         }}
       />
@@ -80,7 +80,7 @@ export default function HeroSection() {
           <Box
             component="span"
             sx={{
-              background: "linear-gradient(to right, #FFB800, #FFD700, #FF6A00)", // Make the gradient bold here too
+              background: "linear-gradient(to right, #FFB800, #FFD700, #FF6A00)", // Bold gradient for the text
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}

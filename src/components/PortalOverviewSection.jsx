@@ -42,23 +42,23 @@ export default function PortalOverviewSection() {
 
   return (
     <Box sx={{ py: 6, px: { xs: 2, md: 6 }, backgroundColor: "#1E2B44" }}>
-      <Typography variant="h2" align="center" sx={{ mb: 4 }}>
+      {/* Updated Typography for Responsiveness */}
+      <Typography 
+        variant="h2" 
+        align="center" 
+        sx={{
+          mb: 4,
+          fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" }, // Responsive font size
+          textAlign: "center",
+          px: 2, // Added padding to avoid text being too close to edges on small screens
+        }}
+      >
         The Business Management Portal
       </Typography>
 
       <Grid container spacing={4}>
         {portalData.map((item) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            key={item.title}
-            sx={{
-              display: item.title === "Analytics Dashboard" ? "flex" : "block", // Center the Data Driven Decisions card on mobile
-              justifyContent: item.title === "Analytics Dashboard" ? "center" : "initial", // Center on mobile
-            }}
-          >
+          <Grid item xs={12} sm={6} md={3} key={item.title}>
             <CardActionArea onClick={() => handleOpenModal(item)}>
               <Paper sx={{ p: 3, height: "100%", textAlign: "center" }} elevation={3}>
                 <Typography variant="h5" sx={{ mb: 2 }}>

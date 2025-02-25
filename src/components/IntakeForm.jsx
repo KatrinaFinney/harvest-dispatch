@@ -13,21 +13,41 @@ export default function IntakeForm({ open, handleClose }) {
     vehicleType: "",
   });
 
+  // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    console.log("Form Data:", formData);
-    handleClose(); // Close the form after submission
+  // Submit form and send data to the backend
+  const handleSubmit = async () => {
+    try {
+      // Send the form data to the backend API
+      const response = await fetch('http://localhost:5000/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Send form data as JSON
+      });
+
+      const result = await response.json();
+      
+      if (response.ok) {
+        console.log('Form submitted successfully:', result);
+        handleClose(); // Close the modal if submission is successful
+      } else {
+        console.error('Failed to submit form:', result.message);
+      }
+    } catch (error) {
+      console.error('Error while submitting form:', error);
+    }
   };
 
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle sx={{ textAlign: "center" }}>Get Started with Harvest Dispatch</DialogTitle>
       <DialogContent>
-        {/* Updated background color for better contrast */}
         <Box sx={{ backgroundColor: "#ffffff", p: 4, borderRadius: 1, boxShadow: 3 }}>
           <TextField
             label="Name"
@@ -36,16 +56,7 @@ export default function IntakeForm({ open, handleClose }) {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            sx={{
-              mb: 3,
-              "& .MuiOutlinedInput-root": {
-                backgroundColor: "#f7f7f7", // Light gray background for inputs
-                borderColor: "#ccc", // Lighter border
-              },
-              "& .MuiOutlinedInput-root.Mui-focused": {
-                borderColor: "#2196F3", // Blue focus border for better visibility
-              },
-            }}
+            sx={{ mb: 3 }}
           />
           <TextField
             label="Email"
@@ -54,16 +65,7 @@ export default function IntakeForm({ open, handleClose }) {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            sx={{
-              mb: 3,
-              "& .MuiOutlinedInput-root": {
-                backgroundColor: "#f7f7f7", // Light gray background for inputs
-                borderColor: "#ccc", // Lighter border
-              },
-              "& .MuiOutlinedInput-root.Mui-focused": {
-                borderColor: "#2196F3", // Blue focus border for better visibility
-              },
-            }}
+            sx={{ mb: 3 }}
           />
           <TextField
             label="Phone"
@@ -72,16 +74,7 @@ export default function IntakeForm({ open, handleClose }) {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            sx={{
-              mb: 3,
-              "& .MuiOutlinedInput-root": {
-                backgroundColor: "#f7f7f7", // Light gray background for inputs
-                borderColor: "#ccc", // Lighter border
-              },
-              "& .MuiOutlinedInput-root.Mui-focused": {
-                borderColor: "#2196F3", // Blue focus border for better visibility
-              },
-            }}
+            sx={{ mb: 3 }}
           />
           <TextField
             label="Company Name"
@@ -90,16 +83,7 @@ export default function IntakeForm({ open, handleClose }) {
             name="companyName"
             value={formData.companyName}
             onChange={handleChange}
-            sx={{
-              mb: 3,
-              "& .MuiOutlinedInput-root": {
-                backgroundColor: "#f7f7f7", // Light gray background for inputs
-                borderColor: "#ccc", // Lighter border
-              },
-              "& .MuiOutlinedInput-root.Mui-focused": {
-                borderColor: "#2196F3", // Blue focus border for better visibility
-              },
-            }}
+            sx={{ mb: 3 }}
           />
           <TextField
             label="Driver License Number"
@@ -108,16 +92,7 @@ export default function IntakeForm({ open, handleClose }) {
             name="driverLicense"
             value={formData.driverLicense}
             onChange={handleChange}
-            sx={{
-              mb: 3,
-              "& .MuiOutlinedInput-root": {
-                backgroundColor: "#f7f7f7", // Light gray background for inputs
-                borderColor: "#ccc", // Lighter border
-              },
-              "& .MuiOutlinedInput-root.Mui-focused": {
-                borderColor: "#2196F3", // Blue focus border for better visibility
-              },
-            }}
+            sx={{ mb: 3 }}
           />
           <TextField
             label="Vehicle Type"
@@ -126,16 +101,7 @@ export default function IntakeForm({ open, handleClose }) {
             name="vehicleType"
             value={formData.vehicleType}
             onChange={handleChange}
-            sx={{
-              mb: 3,
-              "& .MuiOutlinedInput-root": {
-                backgroundColor: "#f7f7f7", // Light gray background for inputs
-                borderColor: "#ccc", // Lighter border
-              },
-              "& .MuiOutlinedInput-root.Mui-focused": {
-                borderColor: "#2196F3", // Blue focus border for better visibility
-              },
-            }}
+            sx={{ mb: 3 }}
           />
         </Box>
       </DialogContent>
@@ -144,7 +110,7 @@ export default function IntakeForm({ open, handleClose }) {
           onClick={handleClose}
           color="secondary"
           sx={{
-            backgroundColor: "#2196F3", // Blue color for close button
+            backgroundColor: "#2196F3",
             color: "#fff",
             "&:hover": {
               backgroundColor: "#1976D2",
@@ -157,7 +123,7 @@ export default function IntakeForm({ open, handleClose }) {
           onClick={handleSubmit}
           color="primary"
           sx={{
-            backgroundColor: "#4CAF50", // Green color for submit button
+            backgroundColor: "#4CAF50",
             color: "#fff",
             "&:hover": {
               backgroundColor: "#388E3C",

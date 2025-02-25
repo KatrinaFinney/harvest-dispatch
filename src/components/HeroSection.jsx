@@ -3,34 +3,30 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Box, Typography, Button } from "@mui/material";
-import IntakeForm from "./IntakeForm"; // Import IntakeForm component
+import IntakeForm from "./IntakeForm"; // Import the IntakeForm component
 
 export default function HeroSection() {
   const heroRef = useRef(null);
   const [openForm, setOpenForm] = useState(false); // Control modal visibility
 
-  useEffect(() => {
-    const ctx = gsap.context((self) => {
-      gsap.from(self.selector(".hero-content"), {
-        duration: 1,
-        y: 40,
-        opacity: 0,
-        ease: "power3.out",
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Open Intake Form Modal
+  // Trigger to open the form modal
   const handleOpenForm = () => {
-    setOpenForm(true);
+    setOpenForm(true);  // This will open the form modal
   };
 
-  // Close Intake Form Modal
+  // Close the form modal
   const handleCloseForm = () => {
-    setOpenForm(false);
+    setOpenForm(false); // This will close the form modal
   };
+
+  useEffect(() => {
+    gsap.from(heroRef.current, {
+      scale: 0.5, // Start smaller
+      opacity: 0,
+      duration: 1.5,
+      ease: "power3.out",
+    });
+  }, []);
 
   return (
     <Box
@@ -39,7 +35,7 @@ export default function HeroSection() {
         position: "relative",
         width: "100%",
         height: "80vh",
-        backgroundImage: `url('/images/truck-hero.jpg')`, // Your background image
+        backgroundImage: `url('/images/truck-hero.jpg')`, // Background image
         backgroundPosition: "center",
         backgroundSize: "cover",
         display: "flex",
@@ -55,7 +51,7 @@ export default function HeroSection() {
         sx={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(135deg, rgba(10, 28, 44, 0.8), rgba(10, 28, 44, 0.8))", // Gradient overlay
+          background: "linear-gradient(135deg, rgba(10, 28, 44, 0.8), rgba(10, 28, 44, 0.8))",
           zIndex: 1,
         }}
       />
@@ -67,7 +63,6 @@ export default function HeroSection() {
           maxWidth: "90vw",
         }}
       >
-        {/* First line */}
         <Typography
           variant="h1"
           sx={{
@@ -80,7 +75,7 @@ export default function HeroSection() {
           <Box
             component="span"
             sx={{
-              background: "linear-gradient(to right, #FFB800, #FFD700, #FF6A00)", // Bold gradient for the text
+              background: "linear-gradient(to right, #FFB800, #FFD700, #FF6A00)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -90,7 +85,6 @@ export default function HeroSection() {
           ,
         </Typography>
 
-        {/* Second line */}
         <Typography
           variant="h1"
           sx={{

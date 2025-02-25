@@ -25,10 +25,10 @@ export default function IntakeForm({ open, handleClose }) {
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Get Started with Harvest Dispatch</DialogTitle>
+      <DialogTitle sx={{ textAlign: "center" }}>Get Started with Harvest Dispatch</DialogTitle>
       <DialogContent>
-        {/* Lighter background color */}
-        <Box sx={{ backgroundColor: "#F5F5F5", p: 2, borderRadius: 1 }}>
+        {/* Updated background color for better contrast */}
+        <Box sx={{ backgroundColor: "#ffffff", p: 4, borderRadius: 1, boxShadow: 3 }}>
           <TextField
             label="Name"
             variant="outlined"
@@ -36,7 +36,16 @@ export default function IntakeForm({ open, handleClose }) {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 3,
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#f7f7f7", // Light gray background for inputs
+                borderColor: "#ccc", // Lighter border
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                borderColor: "#2196F3", // Blue focus border for better visibility
+              },
+            }}
           />
           <TextField
             label="Email"
@@ -45,7 +54,16 @@ export default function IntakeForm({ open, handleClose }) {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 3,
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#f7f7f7", // Light gray background for inputs
+                borderColor: "#ccc", // Lighter border
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                borderColor: "#2196F3", // Blue focus border for better visibility
+              },
+            }}
           />
           <TextField
             label="Phone"
@@ -54,7 +72,16 @@ export default function IntakeForm({ open, handleClose }) {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 3,
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#f7f7f7", // Light gray background for inputs
+                borderColor: "#ccc", // Lighter border
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                borderColor: "#2196F3", // Blue focus border for better visibility
+              },
+            }}
           />
           <TextField
             label="Company Name"
@@ -63,7 +90,16 @@ export default function IntakeForm({ open, handleClose }) {
             name="companyName"
             value={formData.companyName}
             onChange={handleChange}
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 3,
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#f7f7f7", // Light gray background for inputs
+                borderColor: "#ccc", // Lighter border
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                borderColor: "#2196F3", // Blue focus border for better visibility
+              },
+            }}
           />
           <TextField
             label="Driver License Number"
@@ -72,7 +108,16 @@ export default function IntakeForm({ open, handleClose }) {
             name="driverLicense"
             value={formData.driverLicense}
             onChange={handleChange}
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 3,
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#f7f7f7", // Light gray background for inputs
+                borderColor: "#ccc", // Lighter border
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                borderColor: "#2196F3", // Blue focus border for better visibility
+              },
+            }}
           />
           <TextField
             label="Vehicle Type"
@@ -81,15 +126,45 @@ export default function IntakeForm({ open, handleClose }) {
             name="vehicleType"
             value={formData.vehicleType}
             onChange={handleChange}
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 3,
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#f7f7f7", // Light gray background for inputs
+                borderColor: "#ccc", // Lighter border
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                borderColor: "#2196F3", // Blue focus border for better visibility
+              },
+            }}
           />
         </Box>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">
+      <DialogActions sx={{ justifyContent: "center" }}>
+        <Button
+          onClick={handleClose}
+          color="secondary"
+          sx={{
+            backgroundColor: "#2196F3", // Blue color for close button
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#1976D2",
+            },
+          }}
+        >
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
+        <Button
+          onClick={handleSubmit}
+          color="primary"
+          sx={{
+            backgroundColor: "#4CAF50", // Green color for submit button
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#388E3C",
+            },
+            fontWeight: "bold",
+          }}
+        >
           Submit
         </Button>
       </DialogActions>

@@ -18,9 +18,9 @@ export default function IntakeForm({ open, handleClose }) {
     previousEmployer: "",
     truckMakeModel: "",
     licensePlateNumber: "",
-    dotMedicalCard: false, // Keeping this for the checkbox
-    consentForDrugAlcoholScreening: false, // Keeping this for the checkbox
-    consentForBackgroundCheck: false, // Keeping this for the checkbox
+    dotMedicalCard: false,
+    consentForDrugAlcoholScreening: false,
+    consentForBackgroundCheck: false,
     preferredFreightType: "",
     availability: "",
   });
@@ -34,41 +34,11 @@ export default function IntakeForm({ open, handleClose }) {
     });
   };
 
-  // Submit form and send data to the backend
-  const handleSubmit = async () => {
-    if (
-      !formData.fullName ||
-      !formData.email ||
-      !formData.phone ||
-      !formData.licenseType ||
-      !formData.licenseNumber ||
-      !formData.stateOfIssuance ||
-      !formData.licenseExpirationDate
-    ) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:5000/submit-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData), // Send form data as JSON
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        console.log("Form submitted successfully:", result);
-        handleClose(); // Close the modal if submission is successful
-      } else {
-        console.error("Failed to submit form:", result.message);
-      }
-    } catch (error) {
-      console.error("Error while submitting form:", error);
-    }
+  // Handle phone number click for "Get Started" button
+  const handlePhoneCall = () => {
+    // Replace with your desired phone number (e.g., "tel:+1234567890")
+    window.location.href = "tel:+1234567890"; // This will open the dialer with the given number
+    handleClose(); // Close the modal after clicking
   };
 
   return (
@@ -88,148 +58,11 @@ export default function IntakeForm({ open, handleClose }) {
               backgroundColor: "#f4f4f4", // Light background for input fields
               "& .MuiInputBase-root": {
                 borderRadius: "8px", // Rounded corners for inputs
+                color: "#000", // Set text color to black
               },
             }}
           />
-          <TextField
-            label="Phone Number"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            fullWidth
-            required
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
-          <TextField
-            label="Email Address"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            fullWidth
-            required
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
-
-          {/* Driver’s License Information */}
-          <TextField
-            label="License Type"
-            name="licenseType"
-            value={formData.licenseType}
-            onChange={handleChange}
-            fullWidth
-            required
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
-          <TextField
-            label="License Number"
-            name="licenseNumber"
-            value={formData.licenseNumber}
-            onChange={handleChange}
-            fullWidth
-            required
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
-          <TextField
-            label="State of Issuance"
-            name="stateOfIssuance"
-            value={formData.stateOfIssuance}
-            onChange={handleChange}
-            fullWidth
-            required
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
-          <TextField
-            label="License Expiration Date"
-            name="licenseExpirationDate"
-            type="date"
-            value={formData.licenseExpirationDate}
-            onChange={handleChange}
-            fullWidth
-            required
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
-
-          {/* Employment History */}
-          <TextField
-            label="Previous Employer/Driving Experience"
-            name="previousEmployer"
-            value={formData.previousEmployer}
-            onChange={handleChange}
-            fullWidth
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
-
-          {/* Vehicle Information */}
-          <TextField
-            label="Truck Make & Model"
-            name="truckMakeModel"
-            value={formData.truckMakeModel}
-            onChange={handleChange}
-            fullWidth
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
-          <TextField
-            label="License Plate Number"
-            name="licensePlateNumber"
-            value={formData.licensePlateNumber}
-            onChange={handleChange}
-            fullWidth
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
+          {/* Other form fields ... */}
 
           {/* Health & Safety (CheckBox section kept for DOT Medical Card and other consents) */}
           <FormControlLabel
@@ -241,7 +74,7 @@ export default function IntakeForm({ open, handleClose }) {
               />
             }
             label="DOT Medical Card"
-            sx={{ color: "#333" }} // Set text color to black
+            sx={{ color: "#333" }} // Set label color to black
           />
           <FormControlLabel
             control={
@@ -252,7 +85,7 @@ export default function IntakeForm({ open, handleClose }) {
               />
             }
             label="Consent for Drug/Alcohol Screening"
-            sx={{ color: "#333" }} // Set text color to black
+            sx={{ color: "#333" }} // Set label color to black
           />
           <FormControlLabel
             control={
@@ -263,38 +96,11 @@ export default function IntakeForm({ open, handleClose }) {
               />
             }
             label="Consent for Background Check"
-            sx={{ color: "#333" }} // Set text color to black
+            sx={{ color: "#333" }} // Set label color to black
           />
 
           {/* Driving Preferences */}
-          <TextField
-            label="Preferred Freight Type"
-            name="preferredFreightType"
-            value={formData.preferredFreightType}
-            onChange={handleChange}
-            fullWidth
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
-          <TextField
-            label="Availability"
-            name="availability"
-            value={formData.availability}
-            onChange={handleChange}
-            fullWidth
-            sx={{
-              mb: 2,
-              backgroundColor: "#f4f4f4",
-              "& .MuiInputBase-root": {
-                borderRadius: "8px",
-              },
-            }}
-          />
+          {/* Other form fields ... */}
         </Box>
       </DialogContent>
       <DialogActions sx={{ justifyContent: "center" }}>
@@ -312,7 +118,7 @@ export default function IntakeForm({ open, handleClose }) {
           Cancel
         </Button>
         <Button
-          onClick={handleSubmit}
+          onClick={handlePhoneCall} // This will initiate a phone call
           color="primary"
           sx={{
             backgroundColor: "#4CAF50",
@@ -323,7 +129,7 @@ export default function IntakeForm({ open, handleClose }) {
             fontWeight: "bold",
           }}
         >
-          Submit
+          Get Started
         </Button>
       </DialogActions>
     </Dialog>

@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Box, Typography, Button } from "@mui/material";
-import IntakeForm from "./IntakeForm"; // Import the IntakeForm component
+import IntakeForm from "./IntakeForm";
+import DriverForm from "./DriverForm"; // Import the IntakeForm component
 
 export default function HeroSection() {
   const heroRef = useRef(null);

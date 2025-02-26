@@ -1,17 +1,17 @@
-"use client";
+// components/ModalCard.jsx
 
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography } from "@mui/material"; // <-- Import Typography here
-import { useState } from "react";
+import React from 'react';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from '@mui/material';
 
-export default function ModalCard({ title, description, open, onClose }) {
+export default function ModalCard({ open, onClose, title, description }) {
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} fullWidth>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <Typography variant="body1">{description}</Typography> {/* Now Typography is properly imported */}
+        <Typography variant="body1">{description}</Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={onClose} sx={{ color: '#fff' }}>
           Close
         </Button>
       </DialogActions>

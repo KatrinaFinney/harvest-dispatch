@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import "./globals.css"; // optional global styles if you created them
+import "./globals.css"; // Optional global styles if you created them
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";  // <-- Import Box here
@@ -69,11 +69,17 @@ export default function RootLayout({ children }) {
       <body>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          
+          {/* Header */}
           <Header />
-          {/* Ensure the background color is consistent across the site */}
-          <Box sx={{ backgroundColor: theme.palette.background.default }}>
+
+          {/* Main content wrapper with background color */}
+          <Box sx={{ backgroundColor: theme.palette.background.default, minHeight: '100vh' }}>
+            {/* The children content (specific to each page) will render here */}
             {children}
           </Box>
+
+          {/* Footer */}
           <Footer />
         </ThemeProvider>
       </body>

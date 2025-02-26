@@ -1,7 +1,9 @@
 import { Sequelize, DataTypes } from 'sequelize';
+console.log(process.env.DATABASE_URL); // Add this to check if the DATABASE_URL is defined
 
 // Create Sequelize instance and connect to PostgreSQL
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
+    
   dialect: 'postgres',
   dialectOptions: {
     ssl: {

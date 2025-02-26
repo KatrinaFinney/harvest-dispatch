@@ -14,8 +14,11 @@
     "@mui/material": "^6.4.5",
     "gsap": "^3.12.7",
     "next": "15.1.7",
+    "pg": "^8.13.3",
+    "pg-hstore": "^2.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sequelize": "^6.37.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
